@@ -24,7 +24,9 @@ if ($type == 's') {
             // 授权成功
             $_SESSION['token'] = $token;
             setcookie( 'weibojs_'.$o->client_id, http_build_query($token) );
-            header("Location: /app/{$_SESSION['back']}/success/s");
+        	$back = $_SESSION['back'];
+			unset($_SESSION['back']);
+            header("Location: /app/{$back}/success/s");
         } else {
             // 授权失败
             header('Content-type: text/html; charset=utf-8');
@@ -44,7 +46,9 @@ if ($type == 's') {
     OpenSDK_Tencent_Weibo::init($appkey, $appsecret);
     if ('cb' == $cb) {
         if (OpenSDK_Tencent_Weibo::getAccessToken($_GET['oauth_verifier'])) {
-            header("Location: /app/{$_SESSION['back']}/success/t");
+        	$back = $_SESSION['back'];
+			unset($_SESSION['back']);
+            header("Location: /app/{$back}/success/t");
         } else {
             header('Content-type: text/html; charset=utf-8');
             echo '授权失败';
