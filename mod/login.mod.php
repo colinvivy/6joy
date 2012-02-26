@@ -54,7 +54,7 @@ if ($type == 's') {
             echo '授权失败';
         }
     } else if ($cb) {
-        $mini=true;
+        $mini = true;
         $request_token = OpenSDK_Tencent_Weibo::getRequestToken($callback);
         $url = OpenSDK_Tencent_Weibo::getAuthorizeURL($request_token);
         $_SESSION['back'] = $cb;
