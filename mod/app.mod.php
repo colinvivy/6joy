@@ -17,9 +17,30 @@ if ($task == 'preview') {
     $plot->output();
     exit;
 }
+
+
 if ($task == 'success') {
+	$data = include $appfile;
     if ($type == 's') {
-    	print_r($_SESSION);
+    	$c = new SaeTClientV2( WB_AKEY , WB_SKEY , $_SESSION['token']['access_token'] );
+		$uid_get = $c->get_uid();
+		$uid = $uid_get['uid'];
+		
+		$status = $data['wbtext'];
+		
+		$pic_path = tempnam(PATH_DATA."/tmp", "sina");
+		
+        $plot = new Plot();
+        $plot->init($data, array('nickname'=>$uid));
+		$plot->output($pic_path);
+		
+		$ret = $c->upload($status, $pic_path);
+		if (isset($ret['error_code']) && $ret['error_code'] > 0) {
+        	header('Content-type: text/html; charset=utf-8');
+        	die("微博发布失败！".$call_result['msg']);
+        } else {
+        	$wblink = "http://weibo.com/";
+        }
     } else {
         /*
             [tencent_oauth_token] => 544b044180a54a65839185a4f450efcc
@@ -30,7 +51,6 @@ if ($task == 'success') {
             [tencent_open_key] => 9B7626FC701304DB788D8D4129FAEA59
         */
         
-        $data = include $appfile;
         $plot = new Plot();
         $plot->init($data, array('nickname'=>$_SESSION['tencent_oauth_name']));
 
