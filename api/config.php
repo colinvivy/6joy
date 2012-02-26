@@ -1,6 +1,6 @@
 <?php
 define('PATH_ADMIN', PATH_ROOT.'/adm');
-define('PATH_DATA', PATH_ROOT.'/data');
+define('PATH_DATA', PATH_ROOT.'/../appsdata');
 
 $admins = array('seaprince');
 
