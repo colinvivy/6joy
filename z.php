@@ -18,7 +18,7 @@ $paths = explode("/", $pathinfo);
 
 $mod = $paths[0] ? $paths[0] : 'index';
 $task = isset($paths[1]) ? $paths[1] : 'index';
-$act = isset($paths[2]) ? $paths[2] : 'success';
+$act = isset($paths[2]) ? $paths[2] : 'act';
 
 $modfile = PATH_ROOT."/mod/".$mod.".mod.php";
 $tplfile = PATH_ROOT."/tpl/".$mod.".tpl.html";
