@@ -1,0 +1,224 @@
+body {
+    margin: 0px;
+}
+
+div {
+    background-repeat: no-repeat;
+}
+
+.raw_image {
+    width: 100%;
+    height: 100%;
+}
+
+.preload {
+    display: none;
+}
+div.main_container {
+}
+
+.form_sketch {
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.u0 {
+    position:absolute;
+    left:210px;
+    top:190px;
+    width:290px;
+    height:40px;
+    ;
+    ;
+    text-align: left;;
+    font-family:'Arial';
+    font-size: 20px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    
+}
+
+.u1 {
+    position:absolute;
+    left:510px;
+    top:190px;
+    width:110px;
+    height:40px;
+    ;
+    ;
+    text-align: center;;
+    font-family:'Arial';
+    font-size: 13px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    
+}
+
+.u2_container {
+    position:absolute;
+    left:260px;
+    top:59px;
+    width:158px;
+    height:51px;
+}
+
+#u2_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:158px;
+    height:51px;
+}
+
+.u3 {
+    position:absolute;
+    left:2px;
+    top:18px;
+    width:154px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u2 {
+    position:absolute;
+    left:260px;
+    top:59px;
+    width:158px;
+    height:51px
+}
+
+.u4 {
+    position:absolute;
+    left:190px;
+    top:146px;
+    width:380px;
+    height:24px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u5 {
+    position:absolute;
+    left:190px;
+    top:290px;
+    width:410px;
+    height:24px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u6_original {
+    background-image: url('../内测欢迎页_files/u6_original.png');
+}
+
+.u6_container {
+    position:absolute;
+    left:220px;
+    top:334px;
+    width:150px;
+    height:32px;
+}
+
+#u6_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:150px;
+    height:32px;
+}
+
+.u7 {
+    position:absolute;
+    left:2px;
+    top:8px;
+    width:146px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u6 {
+    position:absolute;
+    left:220px;
+    top:334px;
+    width:150px;
+    height:32px
+}
+
+.u8_original {
+    background-image: url('../内测欢迎页_files/u8_original.png');
+}
+
+.u8_container {
+    position:absolute;
+    left:420px;
+    top:334px;
+    width:150px;
+    height:32px;
+}
+
+#u8_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:150px;
+    height:32px;
+}
+
+.u9 {
+    position:absolute;
+    left:2px;
+    top:8px;
+    width:146px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u8 {
+    position:absolute;
+    left:420px;
+    top:334px;
+    width:150px;
+    height:32px
+}
+
+.u10 {
+    position:absolute;
+    left:300px;
+    top:440px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+

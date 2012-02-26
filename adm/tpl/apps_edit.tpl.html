@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>APP管理后台</title>
+<link rel="shortcut icon" href="/favicon.ico" />
+</head>
+
+<body>
+<h1>编辑应用</h1>
+
+<table>
+    <tr>
+        <td valign="top">
+            <form action="json.php" target="hidden_frame" method="post" name="f">
+            <input type="hidden" name="mod" value="apps" />
+            <input type="hidden" name="act" value="add"  id="act"/>
+            <input type="hidden" name="try" value="0" />
+            <input type="hidden" name="task" value="edit" />
+            <input type="hidden" name="appid" value="0" />
+            <input type="hidden" name="callback" value="parent.add_result" />
+            <p>
+                <textarea name="seeds" id="appdata_ini" rows="15" cols="80"></textarea>
+            </p>
+            <p>
+                <input type="submit" value="保存应用" onclick="document.f.act.value='add';document.f.callback.value='parent.add_result';" />  
+                <input type="submit" value="预览" onclick="document.f.act.value='preview';document.f.callback.value='parent.preview';" />  
+                <input type="submit" value="重新加载" onclick="loadApp();return false;" />  
+            </p>
+            <!-- <p><input type="button" value="删除应用" onclick="alert('找技术人员来手动删除！');" /></p> -->
+            </form>
+        </td>
+        <td valign="top"><p id="preview_panel">预览区</p></td>
+    </tr>
+</table>
+
+
+<script type="text/javascript">
+function add_result(obj) {
+    if (obj.ret == 0) {
+        alert("保存成功: "+obj.msg);
+    } else {
+        alert("保存失败: "+obj.msg);
+    }
+}
+function preview(obj) {
+    if (obj.ret == 0) {
+        var url = obj.msg+"?r="+Math.random();
+        Z.id('preview_panel').innerHTML = '绘图预览：<br /><img src="'+url+'" />';
+    } else {
+        Z.id('preview_panel').innerHTML = "预览失败: "+obj.msg;
+    }
+}
+</script>
+
+<script type="text/javascript" src="/static/js/z.js" charset="UTF-8"></script>
+<script>
+function cbApps(o) {
+	Z.id('appdata_ini').value = o.data;
+	Z.id('appid').value = Z.getQuery("appid");
+}
+function loadApp() {
+	Z.loadScript("./json.php?mod=apps&act=get&appid="+Z.getQuery("appid")+"&callback=cbApps&r="+Math.random());
+}
+Z.domready(loadApp);
+</script>
+<iframe name="hidden_frame" src="about:blank" style="display:none"></frame>
+</body>
+
+</html>

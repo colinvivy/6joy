@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>APP管理后台</title>
+<link rel="shortcut icon" href="/favicon.ico" />
+</head>
+
+<body>
+<h1>新增应用</h1>
+
+<form action="json.php" target="hidden_frame" method="post">
+<input type="hidden" name="mod" value="apps" />
+<input type="hidden" name="act" value="add" />
+<input type="hidden" name="try" value="1" />
+<input type="hidden" name="callback" value="parent.add_result" />
+<p>
+    <textarea name="seeds" rows="15" cols="80">name      = 前世死因分析
+appid     = siyin
+sucai     = siyin.png
+wbtext    = 这是发布到微博的文字，可以运营……
+adtext    = 这是显示在应用页面的公告文件，可以打广告。
+
+[plot]
+pos[]     = 80:130
+text[]    = profile:nickname
+prepend[] = 
+append[]  = ：
+font[]    = msyh.ttf
+size[]    = 18
+angle[]   = 0
+color[]   = #ff0000
+
+pos[]     = 100:200
+text[]    = file:siyin.txt
+prepend[] = 
+append[]  = 
+font[]    = simhei.ttf
+size[]    = 20
+angle[]   = 10
+color[]   = #660099</textarea>
+</p>
+<p><input type="submit" value="新增应用" /></p>
+</form>
+
+<script type="text/javascript">
+function add_result(obj) {
+    if (obj.ret == 0) {
+        alert("添加成功: "+obj.msg);
+    } else {
+        alert("添加失败: "+obj.msg);
+    }
+}
+</script>
+
+<iframe name="hidden_frame" src="about:blank" style="display:none"></frame>
+</body>
+
+</html>
