@@ -37,7 +37,8 @@ if ($task == 'success') {
 		$ret = $c->upload($status, $pic_path);
 		if (isset($ret['error_code']) && $ret['error_code'] > 0) {
         	header('Content-type: text/html; charset=utf-8');
-        	die("微博发布失败！".$call_result['msg']);
+        	echo("微博发布失败！");
+			print_r($ret);
         } else {
         	$wblink = "http://weibo.com/";
         }
@@ -68,7 +69,7 @@ if ($task == 'success') {
 									'data' => $imgdata,
 								)),false);
         if ($call_result['ret'] == 0) {
-        	$wblink = "http://t.qq.com/p/t/".$call_result['id'];
+        	$wblink = "http://t.qq.com/";
         } else {
         	header('Content-type: text/html; charset=utf-8');
         	die("微博发布失败！".$call_result['msg']);
