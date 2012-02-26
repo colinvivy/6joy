@@ -24,21 +24,21 @@ if ($task == 'success') {
     if ($type == 's') {
     	$c = new SaeTClientV2( WB_AKEY , WB_SKEY , $_SESSION['token']['access_token'] );
 		$uid_get = $c->get_uid();
-		$uid = $uid_get['uid'];
+		$userinfo = $c->show_user_by_id($uid_get['uid']);
 		
 		$status = $data['wbtext'];
 		
 		$pic_path = tempnam(PATH_DATA."/tmp", "sina");
 		
         $plot = new Plot();
-        $plot->init($data, array('nickname'=>$uid));
+        $plot->init($data, array('nickname'=>$userinfo['screen_name']));
 		$plot->output($pic_path);
 		
 		$ret = $c->upload($status, $pic_path);
 		if (isset($ret['error_code']) && $ret['error_code'] > 0) {
         	header('Content-type: text/html; charset=utf-8');
-        	echo("微博发布失败！");
-			print_r($ret);
+        	echo("微博发布失败！可能你不在白名单中，请@astrologs帮忙开通！");
+			die('');
         } else {
         	$wblink = "http://weibo.com/";
         }
