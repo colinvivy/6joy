@@ -18,19 +18,26 @@ $paths = explode("/", $pathinfo);
 
 $mod = $paths[0] ? $paths[0] : 'index';
 $task = isset($paths[1]) ? $paths[1] : 'index';
+$act = isset($paths[2]) ? $paths[2] : 'success';
 
 $modfile = PATH_ROOT."/mod/".$mod.".mod.php";
 $tplfile = PATH_ROOT."/tpl/".$mod.".tpl.html";
+$acttpl = PATH_ROOT."/tpl/".$mod.'_'.$act.".tpl.html";
 
 if (!is_file($modfile) && !is_file($tplfile)) {
     $tplfile = PATH_ROOT."/tpl/404.tpl.html";
 }
 
-
+// Logis
 if (is_file($modfile)) {
     include $modfile;
 }
-if (is_file($tplfile)) {
+
+// Templates
+if (is_file($acttpl)) {
+	include $acttpl;
+}
+else if (is_file($tplfile)) {
     include $tplfile;
 }
 

@@ -19,6 +19,7 @@ if ($task == 'preview') {
 }
 if ($task == 'success') {
     if ($type == 's') {
+    	print_r($_SESSION);
     } else {
         /*
             [tencent_oauth_token] => 544b044180a54a65839185a4f450efcc
@@ -46,7 +47,12 @@ if ($task == 'success') {
 									'name' => '0.png',
 									'data' => $imgdata,
 								)),false);
-        var_dump($call_result);
+        if ($call_result['ret'] == 0) {
+        	$wblink = "http://t.qq.com/p/t/".$call_result['id'];
+        } else {
+        	header('Content-type: text/html; charset=utf-8');
+        	die("微博发布失败！".$call_result['msg']);
+        }
     }
     exit;
 }

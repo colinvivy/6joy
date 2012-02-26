@@ -6,13 +6,7 @@ $cb = preg_replace("[^a-z]", "", $cb);
 
 if ($type == 's') {
     // 处理新浪
-    if ('cb' != $cb) {
-        $o = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
-        $code_url = $o->getAuthorizeURL( WB_CALLBACK_URL );
-        $code_url = str_replace('&amp;', '&', $code_url);
-        $_SESSION['back'] = $cb;
-        header("Location: $code_url");
-    } else {
+    if ('cb' == $cb) { // 授权回调
         $o = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
         if (isset($_REQUEST['code'])) {
             $keys = array();
@@ -30,12 +24,20 @@ if ($type == 's') {
             // 授权成功
             $_SESSION['token'] = $token;
             setcookie( 'weibojs_'.$o->client_id, http_build_query($token) );
-            header("Location: /app/$cb/success/s");
+            header("Location: /app/{$_SESSION['back']}/success/s");
         } else {
             // 授权失败
             header('Content-type: text/html; charset=utf-8');
             echo '授权失败';
         }
+    } else if ($cb) { // 去登录
+        $o = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
+        $code_url = $o->getAuthorizeURL( WB_CALLBACK_URL );
+        $code_url = str_replace('&amp;', '&', $code_url);
+        $_SESSION['back'] = $cb;
+        header("Location: $code_url");
+    } else {
+        die('error');
     }
 } else if ($type == 't') {
     // 处理腾讯    
