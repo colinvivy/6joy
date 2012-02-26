@@ -28,18 +28,20 @@ class Plot {
     }
 
     function output($file="") {
+    	$imgdata = null;
         if (!$file) {
             header('Content-type: image/png');
-            return imagepng($this->im);
+            $imgdata = imagepng($this->im);
         } else if ($file == 'return') {
             ob_start();
             imagepng($this->im);
             $imgdata = ob_get_contents();
             ob_end_clean();
-            return $imgdata;
         } else {
-            return imagepng($this->im, $file);
+            $imgdata = imagepng($this->im, $file);
         }
+		imagedestroy($this->im);
+		return $imgdata;
     }
 
     function _loadSucai($sucai) {
@@ -103,5 +105,11 @@ class Plot {
         $color = imagecolorallocate($this->im, $r, $g, $b);
         return $color;
     }
+	
+	function __destruct() {
+		if ($this->im) {
+			imagedestroy($this->im);
+		}
+	}
 }
 
