@@ -54,7 +54,6 @@ if ($task == 'success') {
         	die("微博发布失败！".$call_result['msg']);
         }
     }
-    exit;
 }
 if (is_file($appfile)) {
     $app = include $appfile;
