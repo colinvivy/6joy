@@ -107,7 +107,7 @@ class Plot {
     }
 	
 	function __destruct() {
-		if ($this->im) {
+		if (is_resource($this->im)) {
 			imagedestroy($this->im);
 		}
 	}

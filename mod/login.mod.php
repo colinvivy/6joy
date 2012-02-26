@@ -40,22 +40,21 @@ if ($type == 's') {
 } else if ($type == 't') {
     // 处理腾讯    
     OpenSDK_Tencent_Weibo::init($appkey, $appsecret);
-    if (!$cb) {
+    if ('cb' == $cb) {
+        if (OpenSDK_Tencent_Weibo::getAccessToken($_GET['oauth_verifier'])) {
+            header("Location: /app/{$_SESSION['back']}/success/t");
+        } else {
+            header('Content-type: text/html; charset=utf-8');
+            echo '授权失败';
+        }
+    } else if ($cb) {
         $mini=true;
         $request_token = OpenSDK_Tencent_Weibo::getRequestToken($callback);
         $url = OpenSDK_Tencent_Weibo::getAuthorizeURL($request_token);
         $_SESSION['back'] = $cb;
         header('Location: ' . $url);
-    } else if ('cb' == $cb) {
-        if (OpenSDK_Tencent_Weibo::getAccessToken($_GET['oauth_verifier'])) {
-            header("Location: /app/$cb/success/t");
-        } else {
-            header('Content-type: text/html; charset=utf-8');
-            echo '授权失败';
-        }
     } else {
-        var_dump($paths);
-        print_r($_SERVER);
+    	die('error');
     }
 }
 
